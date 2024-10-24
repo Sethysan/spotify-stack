@@ -1,11 +1,17 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <DadJoke />
   </div>
 </template>
 
 <script>
+import DadJoke from '../components/DadJoke.vue';
+
 export default {
+  name: 'Home',
+  components: {
+    DadJoke
+  }
 };
 </script>
