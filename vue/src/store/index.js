@@ -5,7 +5,8 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+      artist: {}
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -16,6 +17,9 @@ export function createStore(currentToken, currentUser) {
       SET_USER(state, user) {
         state.user = user;
         localStorage.setItem('user', JSON.stringify(user));
+      },
+      SET_ARTIST(state,artist){
+        state.artist = artist;
       },
       LOGOUT(state) {
         localStorage.removeItem('token');

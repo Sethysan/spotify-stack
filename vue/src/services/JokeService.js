@@ -9,6 +9,9 @@ export default {
   getJoke() {
     return http.get('/joke');
   },
+  saveJoke(joke){
+    return http.post("/joke", joke);
+  }
 
  
 

@@ -3,10 +3,11 @@ package com.techelevator.dao;
 
 import com.techelevator.model.DBJoke;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.List;
-
+@Component
 public class JdbcJokeDao implements JokeDao {
 
     private JdbcTemplate jdbcTemplate;

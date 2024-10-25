@@ -8,6 +8,8 @@ import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import ArtistView from '../views/ArtistView.vue';
 import ArtistComponent from '../components/ArtistComponent.vue';
+import DetailView from '../views/DetalView.vue'
+
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -56,6 +58,14 @@ const routes = [
     component: ArtistComponent,
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: DetailView,
+    meta: {
+      requiresAuth: true
     }
   }
 ];

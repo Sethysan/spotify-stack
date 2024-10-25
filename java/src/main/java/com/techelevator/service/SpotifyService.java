@@ -13,28 +13,27 @@ import se.michaelthelin.spotify.requests.data.search.simplified.SearchArtistsReq
 
 import java.io.IOException;
 import java.net.URI;
+
 @Service
 public class SpotifyService {
 
-//     private final String API_URL = "https://api.spotify.com/v1/search?q=artist:";
-//    @Value("${CLIENT_ID")
-    private String CLIENT_ID = "f9d1b473e5b24adb9454bdb1fc6fb59e";
-//    @Value("${CLIENT_SECRET")
-    private String CLIENT_SECRET = "7d2bd5c6335c455aa232fb34b5e44d92";
 
-    SpotifyApi spotifyApi = new SpotifyApi.Builder()
-            .setClientId(CLIENT_ID)
-            .setClientSecret(CLIENT_SECRET)
-            .setRedirectUri(URI.create("http://localhost:9000"))
-            .build();
+    SpotifyApi spotifyApi;
 
-    private final ClientCredentialsRequest CLIENT_CREDENTIAL_REQUEST =
-       spotifyApi.clientCredentials().build();
-    public SpotifyService() {
+    private ClientCredentialsRequest CLIENT_CREDENTIAL_REQUEST;
+
+    public SpotifyService(@Value("${spotify.client.id}") String id, @Value("${spotify.client.secret}") String secret) {
+        spotifyApi = new SpotifyApi.Builder()
+                .setClientId(id)
+                .setClientSecret(secret)
+                .setRedirectUri(URI.create("http://localhost:9000"))
+                .build();
+        CLIENT_CREDENTIAL_REQUEST =
+                spotifyApi.clientCredentials().build();
         getClientCredentials();
     }
 
-    public Artist getArtist(String artistName){
+    public Artist getArtist(String artistName) {
         System.out.println(artistName);
         SearchArtistsRequest searchArtistsRequest =
                 spotifyApi.searchArtists(artistName).build();
@@ -48,7 +47,7 @@ public class SpotifyService {
         return null;
     }
 
-    private void getClientCredentials(){
+    private void getClientCredentials() {
         try {
             ClientCredentials clientCredentials =
                     CLIENT_CREDENTIAL_REQUEST.execute();

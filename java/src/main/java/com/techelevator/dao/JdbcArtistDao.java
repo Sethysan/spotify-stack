@@ -2,16 +2,17 @@ package com.techelevator.dao;
 
 
 import com.techelevator.model.DBArtist;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import se.michaelthelin.spotify.model_objects.specification.Artist;
 
 import javax.sql.DataSource;
 import java.util.List;
-
+@Component
 public class JdbcArtistDao implements ArtistDao{
 
     JdbcTemplate jdbcTemplate;
-
     public JdbcArtistDao(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
